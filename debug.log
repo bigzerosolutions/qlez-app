@@ -1,0 +1,28 @@
+Application has been Initiated
+Application is listening on port 5000!
+Customer Register : Customer Action fetchSingle Started
+required action: fetchSingle
+{ actionRequired: 'fetchSingle' }
+body : Sooraj
+response : [object Object]
+Data Received
+body : success
+response : [object Object]
+Login : The user has been verified.
+setEnv : Initiating request to set Env from serviceno_Hardware
+body : true
+response : [object Object]
+setEnv : Settings have done Successfully
+body : success
+response : [object Object]
+Login : The user has been verified.
+setEnv : Initiating request to set Env from serviceno_Hardware
+body : true
+response : [object Object]
+setEnv : Settings have done Successfully
+Customer Register : Customer Action fetchSingle Started
+required action: fetchSingle
+{ actionRequired: 'fetchSingle' }
+body : Sooraj
+response : [object Object]
+Data Received

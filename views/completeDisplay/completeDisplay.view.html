@@ -1,0 +1,81 @@
+<div class="modal-dialog " style="width:100%;margin:0px !important">
+        <!-- Modal content-->
+        <div class="modal-content scrollbarBlack" style="overflow-y: auto;max-height: 780px;">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center;">Stock Display</h2>
+            </div>
+            <div class="modal-body row">
+
+<div class="" ng-init="getAllInventoryItems()" style="background-image:url('');width:100%;height:480px;background-repeat:no-repeat;background-size:cover;background-color: #fff">
+	<!-- <div class=" container"> -->
+		<div class="row text-center" ng-if="isLoading != null" style="padding-top: 20%;">
+			<label style="width:40%;text-align:center;padding:10px;background-color:#2273BA;color: #fff;font-weight: 700;font-size: 24px">{{isLoading}}</label>
+		</div>
+		<div class="row text-center" style="padding-top:1%;margin-right:0px!important">
+			<div class="">
+			<form name="searchproductform" ng-if="isLoading == null" ng-submit="searchproductform()">
+				<div class="col-lg-3">
+					<span style="font-size: 16px">Search by</span>
+				</div>
+				<div class="col-lg-3">
+					<select class="form-control" id="searchBy" ng-model="searchBy">
+						<option value="productName" selected>Product Name</option>
+						<option value="productID">Product ID</option>
+						<option value="companyName">Company Name</option>
+					</select>
+				</div>
+				<div class="col-lg-3">
+					<div  class="form-group col-md-12" ng-class="{ 'has-error' : searchproductform.productName.$invalid && !searchproductform.productName.$pristine }">
+	                    <input type="text" name="productName" id="searchText" class="form-control" ng-model="searchText" placeholder="{{searchBy}}" required />
+	                    <span ng-show="searchproductform.searchText.$dirty && searchproductform.searchText.$error.required" class="help-block">{{searchBy}} is required</span>
+	                </div>
+	                <!-- <div ng-if="searchBy=='companyName'" class="form-group col-md-12" ng-class="{ 'has-error' : searchproductform.companyName.$invalid && !searchproductform.companyName.$pristine }">
+	                    <input type="text" name="companyName" id="companyName" class="form-control" ng-model="searchText" placeholder="Company Name" required />
+	                    <span ng-show="searchproductform.companyName.$dirty && searchproductform.companyName.$error.required" class="help-block">Company name is required</span>
+	                </div>
+	                <div ng-if="searchBy=='productID'" class="form-group col-md-12" ng-class="{ 'has-error' : searchproductform.productID.$invalid && !searchproductform.productID.$pristine }">
+	                    <input type="text" name="productID" id="productID" class="form-control" ng-model="searchText" placeholder="Product ID" required />
+	                    <span ng-show="searchproductform.productID.$dirty && searchproductform.productID.$error.required" class="help-block">Product ID is required</span>
+	                </div> -->
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group" style="">
+            			<button type="button" class="form-control" ng-disabled="searchproductform.$invalid" ng-click="searchformSubmit(productEntryType)">Search</button>
+        			</div>
+				</div>
+			</form>	
+			</div>
+			<div class="row"  ng-if="isLoading == null" style="padding-top:2%">
+              	<table class="table" cellpadding="2px" cellspacing="2px" border="1px solid ">
+                    <thead class="thead-inverse">
+					<tr>
+						<th>Sl No</th>
+						<th>Product ID</th>
+						<th>Product Name</th>
+						<th>Product Company</th>
+						<th>Product Category</th>
+						<th>Product Description</th>
+						<th>Product OfferPrice</th>
+						<th>Product Tax</th>
+						<th>Product Expiry</th>
+						<th>Invoice Date</th>
+					</tr>
+					<tr ng-repeat="inventoryItem in allInventoryItem | filter:filterProducts">
+						<th>{{$index+1}}</th>
+						<th>{{inventoryItem.pID}}</th>
+						<th>{{inventoryItem.pName}}</th>
+						<th>{{inventoryItem.pManufacturer}}</th>
+						<th>{{inventoryItem.pCategory}}</th>
+						<th>{{inventoryItem.pDesc}}</th>
+						<th>{{inventoryItem.pOfferprice}}</th>
+						<th>{{inventoryItem.pTax}}</th>
+						<th>{{inventoryItem.pExpiry}}</th>
+						<th>{{inventoryItem.pInvoicedate}}</th>
+					</tr>
+			</table>			
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
