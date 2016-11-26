@@ -11,73 +11,73 @@
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
         $routeProvider
-            .when('/homepage', {
-                controller: 'HomeController',
-                templateUrl: 'views/homepage/homepage.view.html',
+            .when('/welcome_home', {
+                controller: 'WelcomeHomeController',
+                templateUrl: 'views/WelcomeHome/WelcomeHome.view.html',
                 controllerAs: 'vm'
             })
 
-            .when('/setting', {
+            .when('/app_setting', {
                 controller: 'ServiceChangeController',
-                templateUrl: 'views/userhome/service_Change.view.html',
+                templateUrl: 'views/UserHome/service_Change.view.html',
                 controllerAs: 'vm'
             })
 
-            .when('/userhome', {
+            .when('/user_home', {
                 controller: 'UserHomeController',
-                templateUrl: 'views/userhome/userhome.view.html',
+                templateUrl: 'views/UserHome/UserHome.view.html',
                 controllerAs: 'vm'
             })
 
-            .when('/login', {
+            .when('/login_page', {
                 controller: 'LoginController',
-                templateUrl: 'views/login/login.view.html',
+                templateUrl: 'views/Login/Login.view.html',
                 controllerAs: 'vm'
             })
 
-            .when('/addNewProduct', {
-                controller: 'addNewProduct',
-                templateUrl: 'views/addNewProduct/addNewProduct.view.html',
+            .when('/stock_inventory', {
+                controller: 'StockInventoryController',
+                templateUrl: 'views/StockInventory/StockInventory.view.html',
                 controllerAs: 'product'
             })
-            .when('/thankyou', {
-                controller: 'thankyou',
-                templateUrl: 'views/thankyou/thankyou.view.html',
+            .when('/thankyou_page', {
+                controller: 'ThankYouController',
+                templateUrl: 'views/ThankYou/ThankYou.view.html',
                 controllerAs: 'thankyou'
             })
-            .when('/completeDisplay', {
-                controller: 'completeDisplay',
-                templateUrl: 'views/completeDisplay/completeDisplay.view.html',
+            .when('/stock_display', {
+                controller: 'StockDisplayController',
+                templateUrl: 'views/StockDisplay/StockDisplay.view.html',
                 controllerAs: 'vm'
             })
-            .when('/salesWelcome', {
-                controller: 'salesWelcome',
-                templateUrl: 'views/sales/salesWelcome/salesWelcome.view.html',
+            .when('/sales_welcome', {
+                controller: 'SalesWelcomeController',
+                templateUrl: 'views/Sales/SalesWelcome/SalesWelcome.view.html',
                 controllerAs: 'vm'
             })
-            .when('/billing', {
-                controller: 'billingController',
-                templateUrl: 'views/sales/Billing/billGeneration.view.html',
+            .when('/sales_billing', {
+                controller: 'SalesBillingController',
+                templateUrl: 'views/Sales/SalesBilling/SalesBilling.view.html',
                 controllerAs: 'vm'
             })
-            .when('/customerHome', {
-                controller: 'customerHomeController',
-                templateUrl: 'views/customer/home/customerHome.view.html',
+            .when('/customer_home', {
+                controller: 'CustomerHomeController',
+                templateUrl: 'views/Customer/Home/CustomerHome.view.html',
                 controllerAs: 'vm'
             })
 
-            .when('/customerRegistration', {
-                controller: 'customerRegistration',
-                templateUrl: 'views/customer/registration/customerRegistration.view.html',
+            .when('/customer_registration', {
+                controller: 'CustomerRegistrationController',
+                templateUrl: 'views/Customer/Registration/CustomerRegistration.view.html',
                 controllerAs: 'customer'
             })
 
-            .when('/customerActions', {
-                controller: 'customerActions',
-                templateUrl: 'views/customer/Actions/customerActions.view.html',
+            .when('/customer_actions', {
+                controller: 'CustomerActionsController',
+                templateUrl: 'views/Customer/Actions/CustomerActions.view.html',
                 controllerAs: 'vm'
             })
-            .otherwise({ redirectTo: '/homepage' });
+            .otherwise({ redirectTo: '/welcome_home' });
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
@@ -90,10 +90,10 @@
  
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/homepage', '/login']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/welcome_home', '/login_page']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
-                $location.path('/homepage');
+                $location.path('/welcome_home');
             }
         });
     }
@@ -115,15 +115,14 @@
         $scope.Logout = function(){
             AuthenticationService.ClearCredentials();
             $scope.InvoiceStaff = null;
-            $rootScope.menu = {
+            $rootScope.menu = $rootScope.action = {
             'display' : "none"
             };
-            $location.path('/thankyou');
+            $location.path('/thankyou_page');
         }
         $rootScope.currentPage = function(){
 
             var page = $rootScope.globals.currentUser.currentPage;
-            console.log("currentPage : " + page);
             switch(page) {
                 case "home":
                         $rootScope.home = {

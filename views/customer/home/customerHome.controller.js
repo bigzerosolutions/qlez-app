@@ -2,29 +2,29 @@
     'use strict';
     angular
         .module('app')
-        .controller('customerHomeController', customerHomeController);
+        .controller('CustomerHomeController', CustomerHomeController);
 
-    customerHomeController.$inject = ['$rootScope', '$location','$timeout'];
-    function customerHomeController($rootScope, $location,$timeout) 
+    CustomerHomeController.$inject = ['$rootScope', '$location','$timeout'];
+    function CustomerHomeController($rootScope, $location,$timeout) 
     {
-        console.log("User customer home controller has been initiated");   
+        //console.log("User customer home controller has been initiated");   
         var vm = this;
         $rootScope.globals.currentUser.currentPage = "customer";
         $rootScope.currentPage();
 
         $rootScope.globals.currentUser.currentPage = "customerHome";
-        vm.customerRegistration = customerRegistration;
-        vm.customerDeregistration = customerDeregistration;
+        vm.CustomerRegistration = CustomerRegistration;
+        vm.CustomerActions = CustomerActions;
         vm.username = $rootScope.globals.currentUser.username;
         
-        function customerRegistration()
+        function CustomerRegistration()
         {
-            $location.path('/customerRegistration');
+            $location.path('/customer_registration');
         }
         
-        function customerDeregistration() 
+        function CustomerActions() 
         {
-            $location.path('/customerActions');
+            $location.path('/customer_actions');
         };
         
     }

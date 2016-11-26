@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('app')
-        .controller('customerRegistration', customerRegistration);
+        .controller('CustomerRegistrationController', CustomerRegistrationController);
 
-    customerRegistration.$inject = ['$rootScope', '$location', '$timeout','$scope','$http','$route'];
+    CustomerRegistrationController.$inject = ['$rootScope', '$location', '$timeout','$scope','$http','$route'];
 
-    function customerRegistration($rootScope, $location, $timeout,$scope,$http,$route) 
+    function CustomerRegistrationController($rootScope, $location, $timeout,$scope,$http,$route) 
     {
 
         $rootScope.globals.currentUser.currentPage = "customer";
@@ -32,12 +32,12 @@
             }
             
        }
-        console.log("Customer Registration controller has been initiated");
+        //console.log("Customer Registration controller has been initiated");
         var isLoading = "Loading....";
         $scope.isLoading = isLoading;
 
         $scope.InvoiceStaff = $rootScope.globals.currentUser.username;
-        console.log("New Customer ID : Single ID Fetching");
+        //console.log("New Customer ID : Single ID Fetching");
 
         $scope.noDecimal = function($event){
         if(isNaN(String.fromCharCode($event.keyCode))){
@@ -55,10 +55,10 @@
 
         $http.post('/getSinglePID',$scope.product).success(function(response)
         {
-            console.log("New Customer ID : Response from the server : " + response);
+            //console.log("New Customer ID : Response from the server : " + response);
                 if(response == '"fail"' || response == '"junk data"')
                 {
-                    console.log("New Customer ID : No ID has been detected");
+                    //console.log("New Customer ID : No ID has been detected");
                     swal({title: "No ID detected!",   text: "Please retry",   type: "error",   confirmButtonText: "ok" },
                         function()
                         {
@@ -72,7 +72,7 @@
                 }
                 else
                 {
-                    console.log("New Customer ID : ID has been detected");
+                   // console.log("New Customer ID : ID has been detected");
                     $scope.customer.cID = response;
                     $scope.isLoading = null;
                     
@@ -81,7 +81,7 @@
         
         $scope.customerformSubmit = function()
         {
-            console.log($scope.customer);
+            //console.log($scope.customer);
             $scope.customer.action = "register";
             $http.post('/customerActions',$scope.customer).success(function(response)
             {

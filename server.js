@@ -109,8 +109,6 @@ app.post('/loginAuth', function(req , res)
       timeout: 5000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "success")
       {
           console.log("Login : The user has been verified.");
@@ -129,8 +127,6 @@ app.post('/loginAuth', function(req , res)
 app.post('/addProduct', function(req , res) 
 {
     console.log("Add Product : Adding Product to Db Started");
-    console.log("Add Product : " + req.body)
-
     request({
       uri: "http://localhost:8080/AngularJSWithRestful/AddProduct",
       method: "POST",
@@ -152,8 +148,6 @@ app.post('/addProduct', function(req , res)
       timeout: 15000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "success")
       {
           console.log("Add Product : Data has been Successfully received at the Service API");
@@ -178,8 +172,6 @@ app.get('/loadCategory', function(req , res)
       timeout: 5000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "fail")
       {
           console.log("Load Category : No Product List was received");
@@ -187,7 +179,7 @@ app.get('/loadCategory', function(req , res)
       }
       else
       {
-          console.log("Load Category : Product List received : " + body);
+          //console.log("Load Category : Product List received : " + body);
           res.send(body);          
       }
     });
@@ -198,9 +190,7 @@ app.get('/loadCategory', function(req , res)
 app.post('/customerActions', function(req , res) 
 {
     console.log("Customer Register : Customer Action "+req.body.action+" Started");
-    //console.log("Customer Register : " + req.body);
     var data = {};
-    console.log("required action: "+req.body.action);
     switch(req.body.action) {
     case "fetchAll":
         data = {actionRequired : req.body.action};
@@ -235,7 +225,6 @@ app.post('/customerActions', function(req , res)
     default:
         data = {actionRequired : req.body.action};
     }
-    console.log(data);
     request({
       uri: "http://localhost:8080/AngularJSWithRestful/customerServlet",
       method: "POST",
@@ -243,8 +232,6 @@ app.post('/customerActions', function(req , res)
       timeout: 15000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "Customer_addition_successful")
       {
           console.log("Customer Register : Data has been Successfully Added");
@@ -293,8 +280,6 @@ app.post('/getSinglePID', function(req , res)
       timeout: 15000,
       }, 
       function(success, response, body) {
-        console.log("body : " + body);
-        console.log("response : " + response);
         if(body == "fail")
         {
             console.log("Single ID : No Product ID was received");
@@ -302,7 +287,7 @@ app.post('/getSinglePID', function(req , res)
         }
         else
         {
-            console.log("Single ID : Recieved ID");
+            console.log("Single ID : Recieved ID "+ body);
             res.send(body);
         }
       });
@@ -315,7 +300,7 @@ app.post('/getSinglePID', function(req , res)
 app.post('/setEnv', function(req , res) 
 {
     key_value = req.body.Env_key;
-    console.log("setEnv : Initiating request to set Env from service"+req.body.Env_key);
+    console.log("setEnv : Initiating request to set Env from service "+req.body.Env_key);
     request({
       uri: "http://localhost:8080/AngularJSWithRestful/SetEnvironmentServlet",
       method: "POST",
@@ -325,8 +310,6 @@ app.post('/setEnv', function(req , res)
       timeout: 15000,
       }, 
       function(success, response, body) {
-        console.log("body : " + body);
-        console.log("response : " + response);
         if(body == "fail")
         {
             console.log("setEnv : Environment Setting was not successful");
@@ -352,8 +335,6 @@ app.get('/getPurchasedItems', function(req , res)
       timeout: 15000,
       }, 
       function(success, response, body) {
-        console.log("body : " + body);
-        console.log("response : " + response);
         if(body == "fail")
         {
             console.log("Purchased Items : No Product Details was received");
@@ -372,7 +353,6 @@ app.get('/getPurchasedItems', function(req , res)
 app.post('/transactionServlet', function(req , res) 
 {
     console.log("transaction : Initiating payment request.");
-    console.log(req.body);
      request({
       uri: "http://localhost:8080/AngularJSWithRestful/transactionServlet",
       method: "POST",
@@ -384,8 +364,6 @@ app.post('/transactionServlet', function(req , res)
       timeout: 15000,
       },
       function(success, response, body) {
-        console.log("body : " + body);
-        console.log("response : " + response);
         if(body == "fail")
         {
             console.log("Purchased Items : No Product Details was received");
@@ -406,15 +384,12 @@ app.post('/transactionServlet', function(req , res)
 app.get('/getAllInventoryItems', function(req , res) 
 {
     console.log("Inventory Items : Initiating request to fetch product Inventory from service");
-    //console.log(req.body)
     request({
       uri: "http://localhost:8080/AngularJSWithRestful/CompleteInventoryServlet",
       method: "POST",
       timeout: 5000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "fail")
       {
           console.log("Inventory Items : No Product List was received");
@@ -422,7 +397,7 @@ app.get('/getAllInventoryItems', function(req , res)
       }
       else
       {
-          console.log("Inventory Items : Product List received : " + body);
+          //console.log("Inventory Items : Product List received : " + body);
           res.send(body);          
       }
     });
@@ -433,7 +408,6 @@ app.get('/getAllInventoryItems', function(req , res)
 app.post('/changeUserPassword', function(req , res) 
 {
     console.log("Change Password : Change Password function called");
-
     request({
       uri: "http://localhost:8080/AngularJSWithRestful/changePasswordServlet",
       method: "POST",
@@ -443,8 +417,6 @@ app.post('/changeUserPassword', function(req , res)
       timeout: 5000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "fail")
       {
           console.log("Change Password : Password change link was not sent");
@@ -470,8 +442,6 @@ app.post('/updateProductDB', function(req , res)
       timeout: 5000,
     }, 
     function(success, response, body) {
-      console.log("body : " + body);
-      console.log("response : " + response);
       if(body == "failed")
       {
           console.log("Update Product Table : Product table was not updated Successfully");

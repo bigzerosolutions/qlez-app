@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .controller('thankyou', thankyou);
+        .controller('ThankYouController', ThankYouController);
 
-    thankyou.$inject = ['$rootScope','$http','$location','$timeout'];
-    function thankyou($rootScope, $http,$location,$timeout) 
+    ThankYouController.$inject = ['$rootScope','$http','$location','$timeout'];
+    function ThankYouController($rootScope, $http,$location,$timeout) 
     {
         $rootScope.globals.currentUser.sessionEnd = new Date();
         console.log($rootScope.globals);

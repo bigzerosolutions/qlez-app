@@ -7,8 +7,7 @@
     ServiceChangeController.$inject = ['$rootScope','$scope', '$location','$http'];
     
     function ServiceChangeController($rootScope,$scope, $location,$http){
-        console.log("ServiceChangeController has been initiated");    
-        $rootScope.menu = {
+        $rootScope.menu = $rootScope.action = {
             'display' : "none"
         };
         $scope.user = $rootScope.globals.currentUser.username;
@@ -19,10 +18,9 @@
             if(Env=='Prod'){
                 $scope.key = "Hardware";
             }
-            //console.log("setEnv : setEnv function has been initiated with Env: "+ $scope.key)
             $http.post('/setEnv',{"Env_key": $scope.key}).success(function(response){   
                 if(response == "true"){
-                    var test = $location.path('/userhome');
+                    var test = $location.path('/user_home');
                 }
                 else if(response == "false"){
                     console.log("Setting : Env is not set.");

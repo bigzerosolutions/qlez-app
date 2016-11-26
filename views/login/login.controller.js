@@ -9,8 +9,7 @@
     
     function LoginController($location,$scope,$http,AuthenticationService,$rootScope) {
         var vm = this;
-        //console.log("Login controller has been initiated");    
-        $rootScope.menu = {
+        $rootScope.menu = $rootScope.action = {
             'display' : "none"
         };
         
@@ -18,24 +17,23 @@
         AuthenticationService.ClearCredentials();
         
         $scope.login = function(){  
-            //console.log("Login : Login function has been initiated")
-            // Connecting to the server side for verification 
             $http.post('/loginAuth',$scope.vm).success(function(response){
-                //console.log("Login : Response recieved from the server : "  + response);
                 if(response == "true"){
-                    console.log("Login : User is verified");
                     AuthenticationService.SetCredentials(vm.username, vm.password);
-                    console.log("username : " +vm.username);
                     if(vm.username == "admin"){
-                        $location.path('/setting');    
+                        $location.path('/app_setting');    
                         $rootScope.globals.currentUser.username = vm.username;
                     }
+                    else if(vm.username == "salesman")
+                    {
+                        $location.path('/sales_welcome');
+                        $rootScope.globals.currentUser.username = vm.username; 
+                    }
                     else{
-                        $location.path('/userhome');   
+                        $location.path('/user_home');   
                     }
                 }
                 else if(response == "false"){
-                    console.log("Login : User is not verified");
                     swal({title: "Login Error!",   text: "Login Credentials are not valid",   type: "error",   confirmButtonText: "ok" });
                 }
                 else{

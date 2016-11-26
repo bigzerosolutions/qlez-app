@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .controller('billingController', billingController);
+        .controller('SalesBillingController', SalesBillingController);
 
-    billingController.$inject = ['$filter','$http', '$scope','$location','$timeout','$rootScope'];
-    function billingController($filter, $http, $scope,$location,$timeout,$rootScope) 
+    SalesBillingController.$inject = ['$filter','$http', '$scope','$location','$timeout','$rootScope'];
+    function SalesBillingController($filter, $http, $scope,$location,$timeout,$rootScope) 
     {
         
         $scope.isLoading = "Loading....";
@@ -25,7 +25,7 @@
         $scope.showBill = function()
         {
             $scope.user = $rootScope.globals.currentUser.customerName;
-            console.log($scope.user);
+            //console.log($scope.user);
             $http.get('/getPurchasedItems').success(function(response)
             {
                 $scope.subtotal =0;
@@ -73,19 +73,19 @@
                 "transaction_timestamp": $scope.date +" " + $scope.time,  
                 "trxn_amount": $scope.subtotal
             };
-            console.log(transaction);
-            console.log($scope.allPurchasedItems);
+            //console.log(transaction);
+            //console.log($scope.allPurchasedItems);
             $http.post('/updateProductDB').success(function(response)
             {
                 if(response == "success")
                 {
-                    console.log("Items Updated in Db");
+                    //console.log("Items Updated in Db");
                     
                     $http.post('/transactionServlet',transaction).success(function(response)
                     {
                         if(response == "success")
                         {
-                            console.log("Items Updated in Transaction Db");
+                            //console.log("Items Updated in Transaction Db");
                             swal({title: "Payment Successfull",   text: "Have a Wonderfull day",   type: "info",   confirmButtonText: "ok" });
                             $location.path('/userhome');
                         }

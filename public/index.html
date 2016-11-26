@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" style="padding: 3px" href="#userhome">  
+            <a class="navbar-brand" style="padding: 3px" href="#user_home">  
                 <img alt="Brand" src="images/Quelez.png" style="width: 50px;height: auto">
             </a>
         </div>
@@ -29,14 +29,14 @@
             <li class="dropdown">
               <a class="dropdown-toggle" ng-style="menu" style="padding: 3px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#userhome" ng-style="home">Home</a></li>
-                <li><a href="#addNewProduct" ng-style="inventory">Inventory</a></li>
-                <li><a href="#customerHome" ng-style="customer">Customer</a></li>
-                <li><a href="#completeDisplay" ng-style="stock">Stock</a></li>
+                <li><a href="#user_home" ng-style="home">Home</a></li>
+                <li><a href="#stock_inventory" ng-style="inventory">Stock Inventory</a></li>
+                <li><a href="#customer_home" ng-style="customer">Customer</a></li>
+                <li><a href="#stock_display" ng-style="stock">Stock Display</a></li>
               </ul>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right" ng-style="menu">
+          <ul class="nav navbar-nav navbar-right" ng-style="action">
             <li class="dropdown"  >
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 3px">User Actions <span class="caret" ></span></a>
               <ul class="dropdown-menu">
@@ -77,18 +77,19 @@
     <script src="app-services/authentication.service.js"></script>
     <script src="app-services/flash.service.js"></script> 
     <script src="app-services/user.service.local-storage.js"></script>
-    <script src="views/homepage/homepage.controller.js"></script>
-    <script src="views/userhome/userhome.controller.js"></script>
-    <script src="views/userhome/service_Change.controller.js"></script>
-    <script src="views/customer/Actions/customerActions.controller.js"></script>
-    <script src="views/customer/home/customerHome.controller.js"></script>
-    <script src="views/customer/registration/customerRegistration.controller.js"></script>
-    <script src="views/login/login.controller.js"></script>
-    <script src="views/addNewProduct/addNewProduct.controller.js"></script>
-    <script src="views/thankyou/thankyou.controller.js"></script>
-    <script src="views/sales/salesWelcome/salesWelcome.controller.js"></script>
-    <script src="views/sales/Billing/billGeneration.controller.js"></script>
-    <script src="views/completeDisplay/completeDisplay.controller.js"></script>
+    
+    <script src="views/WelcomeHome/WelcomeHome.controller.js"></script>
+    <script src="views/UserHome/UserHome.controller.js"></script>
+    <script src="views/UserHome/service_Change.controller.js"></script>
+    <script src="views/Customer/Actions/CustomerActions.controller.js"></script>
+    <script src="views/Customer/Home/CustomerHome.controller.js"></script>
+    <script src="views/Customer/Registration/CustomerRegistration.controller.js"></script>
+    <script src="views/Login/Login.controller.js"></script>
+    <script src="views/StockInventory/StockInventory.controller.js"></script>
+    <script src="views/ThankYou/ThankYou.controller.js"></script>
+    <script src="views/Sales/SalesWelcome/SalesWelcome.controller.js"></script>
+    <script src="views/Sales/SalesBilling/SalesBilling.controller.js"></script>
+    <script src="views/StockDisplay/StockDisplay.controller.js"></script>
     
     </body>
 </html>

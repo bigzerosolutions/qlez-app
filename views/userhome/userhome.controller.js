@@ -6,29 +6,29 @@
 
     UserHomeController.$inject = ['$rootScope','AuthenticationService', '$location','$timeout'];
     function UserHomeController($rootScope,AuthenticationService, $location,$timeout){
-        console.log("User Home controller has been initiated");    
         var vm = this;
-        $rootScope.menu = {
+        $rootScope.menu = $rootScope.action = {
             'display' : "block"
         };
         
         $rootScope.globals.currentUser.currentPage = "home";
         $rootScope.currentPage();
-        vm.addNewProduct = addNewProduct;
-        vm.customerService = customerService;
-        vm.completeDisplay = completeDisplay;
+        
+        vm.StockInventory = StockInventory;
+        vm.CustomerService = CustomerService;
+        vm.StockDisplay = StockDisplay;
         vm.username = $rootScope.globals.currentUser.username;
         
-        function completeDisplay(){
-            $location.path('/completeDisplay');
+        function StockDisplay(){
+            $location.path('/stock_display');
         }
 
-        function customerService(){
-            $location.path('/customerHome');
+        function CustomerService(){
+            $location.path('/customer_home');
         }
         
-        function addNewProduct(){
-            $location.path('/addNewProduct');
+        function StockInventory(){
+            $location.path('/stock_inventory');
         };
     }
 })();

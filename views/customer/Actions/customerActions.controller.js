@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('app')
-        .controller('customerActions', customerActions);
+        .controller('CustomerActionsController', CustomerActionsController);
 
-    customerActions.$inject = ['$rootScope', '$location', '$timeout','$scope','$http'];
+    CustomerActionsController.$inject = ['$rootScope', '$location', '$timeout','$scope','$http'];
 
-    function customerActions($rootScope, $location, $timeout,$scope,$http) {
+    function CustomerActionsController($rootScope, $location, $timeout,$scope,$http) {
         console.log("User customerActions controller has been initiated");
         
         
@@ -31,11 +31,11 @@
         //$scope.customerService = customerService;
 
         function getCustomers() {
-          console.log($scope.customer);
+         //console.log($scope.customer);
             $scope.customer.action = "fetchAll";
             $http.post('/customerActions',$scope.customer).success(function(response)
             {
-                console.log(response);
+                //console.log(response);
                 if(response == "fail")
                 {
                     // When the customer is not register
@@ -60,7 +60,7 @@
                     $scope.isLoading = null;
                     $scope.customers =response;
                 }
-                console.log($scope.customers);
+                //console.log($scope.customers);
                 //$rootScope.globals.currentUser.customerName= $scope.user;
         });
             
@@ -70,7 +70,7 @@
         function filterCards(cost) {
             //console.log("ddsd");
             var flag1 = false;
-            console.log($scope.searchText);
+            //console.log($scope.searchText);
             if ($scope.searchText != undefined && $scope.searchText != null && $scope.searchText != '') {
                 if ((cost.customer_Name != null && cost.customer_Name.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1) ||
                     (cost.customer_ID != null && cost.customer_ID.toLowerCase().indexOf($scope.searchText.toLowerCase()) != -1)) {
@@ -104,10 +104,10 @@
             $scope.customer.action = "edit";
             $http.post('/customerActions',$scope.editCustomerValues).success(function(response)
             {
-            console.log("New Customer ID : Response from the server : " + response);
+            //console.log("New Customer ID : Response from the server : " + response);
                 if(response == '"fail"' || response == '"junk data"')
                 {
-                    console.log("Edit Customer : No ID has been detected");
+                    //console.log("Edit Customer : No ID has been detected");
                     swal({title: "Not edited!",   text: "Please retry",   type: "error",   confirmButtonText: "ok" },
                         function()
                         {
@@ -121,7 +121,7 @@
                 }
                 else
                 {
-                    console.log("Edit Customer : Customer has been edited");
+                    //console.log("Edit Customer : Customer has been edited");
                     for (var i = 0; i < $scope.customers.length; i++) {
                 if ($scope.customers[i].Id == customerId) {
                     $scope.customers[i].Name = $scope.customerName;
@@ -143,10 +143,10 @@
                 };
             $http.post('/customerActions',$scope.deleteCustomerValues).success(function(response)
             {
-            console.log("Delete Customer : Response from the server : " + response);
+            //console.log("Delete Customer : Response from the server : " + response);
                 if(response == '"fail"' || response == '"junk data"')
                 {
-                    console.log("New Customer ID : No ID has been detected");
+                    //console.log("New Customer ID : No ID has been detected");
                     swal({title: "Not deleted!",   text: "Please retry",   type: "error",   confirmButtonText: "ok" },
                         function()
                         {
@@ -160,7 +160,7 @@
                 }
                 else
                 {
-                    console.log("Delete Customer : Customer has been deleted");
+                    //console.log("Delete Customer : Customer has been deleted");
                     for(var i = $scope.customers.length - 1; i >= 0; i--) {
                     if($scope.customers[i].Id === customerId) {
                         $scope.customers.splice(i, 1);
